@@ -1,0 +1,30 @@
+   
+server:
+  servlet:
+    # Use different context-path to avoid session cookie overlapping
+    context-path: /
+  port: 8781
+  use-forward-headers: false 
+
+# Define security
+security:
+  basic:
+    enabled: false
+  user:
+    password: password
+  ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.amqp.rabbit.listener.BlockingQueueConsumer: ERROR
+    com.netflix.discovery: INFO
+    org.springframework.security: INFO
+    com.walkmars: DEBUG
+      
+---
+spring:
+  profiles: docker
+
+server:
+  port: ${SERVICE_PORT}

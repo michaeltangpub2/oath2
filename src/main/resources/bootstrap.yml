@@ -1,0 +1,25 @@
+spring:
+  security:
+    user:
+      name: user
+      password: password
+    
+
+  aop:
+    proxyTargetClass: false
+  application:
+    name: oauth-service
+  #datasource:
+    #url: jdbc:log4jdbc:mysql://127.0.0.1:3306/oauth2?useUnicode=true&characterEncoding=utf-8
+    #username: root
+    #password: root
+    #driver-class-name: net.sf.log4jdbc.DriverSpy
+  #redis:
+    #host: 127.0.0.1
+    #database: 0
+  #jpa:
+    #hibernate:
+    #ddl-auto: none
+
+  
+    
