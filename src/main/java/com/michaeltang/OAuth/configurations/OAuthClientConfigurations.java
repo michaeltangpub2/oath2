@@ -20,7 +20,7 @@ public class OAuthClientConfigurations {
     private OAuthTokenService tokenService = null;
     
     @Bean(name = "clientValidator")
-    public Validator resourceOwnerValidator() {
+    public Validator clientValidator() {
         Validator redirectUriValidator = new RedirectUriValidator(null, clientService, tokenService);
         return redirectUriValidator;
     }
