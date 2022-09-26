@@ -26,7 +26,7 @@ import com.michaeltang.OAuth.services.OAuthTokenService;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-@SpringBootApplication(exclude= {})
+@SpringBootApplication
 @EnableWebSecurity
 public class AuthorizationServerApplication extends WebMvcConfigurerAdapter {
 
