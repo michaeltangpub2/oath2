@@ -61,7 +61,7 @@ public class AuthorizationServerApplication extends WebMvcConfigurerAdapter {
     protected static class LoginConfiguration extends WebSecurityConfigurerAdapter {
     	
     	@Autowired
-        UserDetailsService detailsService;
+        UserDetailsService userDetailsService;
     	
     	@Autowired
         private OAuthTokenService tokenService;
@@ -89,12 +89,12 @@ public class AuthorizationServerApplication extends WebMvcConfigurerAdapter {
             .authorizeRequests().anyRequest().authenticated()
             .and()
             .httpBasic();
-        	http.addFilterBefore(new OAuthTokenFilter(detailsService, tokenService), UsernamePasswordAuthenticationFilter.class);
+        	http.addFilterBefore(new OAuthTokenFilter(userDetailsService, tokenService), UsernamePasswordAuthenticationFilter.class);
         }
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        	auth.userDetailsService(detailsService).passwordEncoder(new BCryptPasswordEncoder());
+        	auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
             /*auth.inMemoryAuthentication()
                     .withUser("user").password("password").roles("USER")
                     .and()

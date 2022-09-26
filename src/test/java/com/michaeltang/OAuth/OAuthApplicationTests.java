@@ -109,7 +109,7 @@ public class OAuthApplicationTests {
 	 */
 	
 	@Test
-    public void testOAuth2GrantCodeMode2() throws URISyntaxException {
+    public void testOAuth2GrantCodeMode() throws URISyntaxException {
         // Test 
         RestTemplate restTemplate = new RestTemplate();
         final HttpComponentsClientHttpRequestFactory factory = 
