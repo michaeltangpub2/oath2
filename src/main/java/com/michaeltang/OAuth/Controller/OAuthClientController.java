@@ -25,6 +25,7 @@ import com.michaeltang.OAuth.model.OAuthAuthenticationState;
 import com.michaeltang.OAuth.services.OAuthClientService;
 import com.michaeltang.OAuth.services.OAuthTokenService;
 import com.michaeltang.OAuth.validator.Validator;
+import com.michaeltang.OAuth.validator.Verifier;
 
 @RestController
 public class OAuthClientController {
@@ -32,6 +33,9 @@ public class OAuthClientController {
     @Autowired
     @Qualifier("clientValidator")
     private Validator validator;
+    
+    @Autowired
+    private Verifier verifier;
     
     @Autowired
     private OAuthClientService clientService;
@@ -51,6 +55,7 @@ public class OAuthClientController {
         }
         validator.validate(principal, parameters);
         final OAuthAuthenticationState authState = tokenService.queryByGrantCode(principal, parameters);
+        verifier.verify(principal, parameters, authState);
         return buildResponse(authState);
     }
     

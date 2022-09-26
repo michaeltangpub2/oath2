@@ -83,7 +83,12 @@ public class AuthorizationServerApplication extends WebMvcConfigurerAdapter {
             .and()
             .authorizeRequests().anyRequest().authenticated()
             .and()
-            .csrf().disable();
+            .csrf().disable()
+            .requestMatchers().antMatchers("/oauth/token")
+            .and()
+            .authorizeRequests().anyRequest().authenticated()
+            .and()
+            .httpBasic();
         	http.addFilterBefore(new OAuthTokenFilter(detailsService, tokenService), UsernamePasswordAuthenticationFilter.class);
         }
 

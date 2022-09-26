@@ -27,7 +27,15 @@ public class OAuthUserDetailsService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority("USER"));
         logger.debug("loadUserByUsername, username:" + username);
 
-        if (username.equals("user1")){
+        if (username.equals("demo_client_id")){
+            return new org.springframework.security.core.userdetails.User(
+                    username, encoder.encode("demo_client_secret"),
+                    true,//enabled
+                    true,//accountNonExpired
+                    true,//credentialsNonExpired
+                    true,//accountNonLocked
+                    authorities);
+        } else if (username.equals("user1")){
 	        return new org.springframework.security.core.userdetails.User(
 	                username, encoder.encode("123456"),
 	                true,//enabled

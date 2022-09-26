@@ -17,7 +17,7 @@ public abstract class ValidatorDecorator implements Validator {
         this.tokenService = tokenService;
     }
     
-    public void validateNext(Principal principal, Map<String, String> parameters) throws Exception {
+    protected void validateNext(Principal principal, Map<String, String> parameters) throws Exception {
         if (next != null) {
             next.validate(principal, parameters);
         }

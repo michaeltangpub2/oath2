@@ -3,9 +3,10 @@ package com.michaeltang.OAuth.Controller;
 import java.security.Principal;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class OAuthResourceOwnerController {
     
     @RequestMapping(value = "/oauth/authorize")
     public ModelAndView authorize(Map<String, Object> model, @RequestParam Map<String, String> parameters,
-            SessionStatus sessionStatus, Principal principal) throws Exception {
+            SessionStatus sessionStatus, Principal principal, HttpServletRequest request) throws Exception {
         validator.validate(principal, parameters);
         final String code = tokenService.onResourceOwnerApproved(principal, parameters);
         String redirectUri = parameters.get("redirect_uri");
@@ -40,6 +41,8 @@ public class OAuthResourceOwnerController {
         } else {
             redirectUri = redirectUri + "?code=" + code;
         }
+        sessionStatus.setComplete();
+        request.getSession().invalidate();
         return new ModelAndView(new RedirectView(redirectUri, false, true, false));
     }
 }
