@@ -1,1 +1,1 @@
-java -jar target/OAuthDemo-0.1.jar --server.port=8781
+java -jar target/oauth2-demo-0.1.jar --server.port=8781

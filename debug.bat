@@ -1,1 +1,1 @@
-java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9998 -jar target/OAuthDemo-0.1.jar --server.port=8781
+java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9998 -jar target/oauth2-demo-0.1 --server.port=8781
